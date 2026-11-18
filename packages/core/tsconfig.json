@@ -1,0 +1,4 @@
+{
+  "extends": "@trath/tsconfig-config/base",
+  "include": ["src", "vitest.config.ts"]
+}
