@@ -1,0 +1,372 @@
+:root {
+  color-scheme: light dark;
+
+  --bg: #f6f3ee;
+  --surface: #fffdf9;
+  --line: #e3ddd2;
+  --text: #22201c;
+  --muted: #6f6a60;
+  --accent: #1f4d46;
+  --accent-text: #f6f3ee;
+  --accent-soft: #dfeae6;
+  --break: #8a5a1c;
+  --break-soft: #f3e6cf;
+  --danger: #9c2f24;
+  --danger-soft: #f6ddd8;
+  --focus: #2f7d71;
+
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #171a19;
+    --surface: #1f2322;
+    --line: #2f3533;
+    --text: #ebe8e1;
+    --muted: #9a9a90;
+    --accent: #7fc4b5;
+    --accent-text: #10201d;
+    --accent-soft: #24332f;
+    --break: #e0b872;
+    --break-soft: #37301f;
+    --danger: #f0a399;
+    --danger-soft: #3c2421;
+    --focus: #7fc4b5;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100vh;
+  padding: 12px;
+}
+
+.timer,
+.today,
+.export {
+  flex: none;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.today {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 96px;
+}
+
+.modes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  padding: 2px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.mode {
+  padding: 6px 4px;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.mode[aria-checked='true'] {
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.mode:disabled:not([aria-checked='true']) {
+  opacity: 0.45;
+}
+
+.clock {
+  margin: 14px 0 0;
+  text-align: center;
+  font-size: 64px;
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.timer[data-status='running'] .clock {
+  color: var(--accent);
+}
+
+.timer[data-status='paused'] .clock {
+  color: var(--muted);
+}
+
+.timer[data-status='break'] .clock {
+  color: var(--break);
+}
+
+.caption {
+  margin: 4px 0 14px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.banner {
+  margin: 0 0 12px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+.banner-eye {
+  background: var(--break-soft);
+  color: var(--break);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.banner-error {
+  margin: 0;
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.button:hover:not(:disabled) {
+  border-color: var(--muted);
+}
+
+.button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+
+.button:disabled {
+  opacity: 0.45;
+}
+
+kbd {
+  font: inherit;
+  font-size: 11px;
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.range {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.field span,
+.section-head h2 {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.field input {
+  width: 100%;
+  padding: 7px 9px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.field input::placeholder {
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.toggle {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 8px;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.toggle input {
+  accent-color: var(--accent);
+}
+
+.toggle small {
+  grid-column: 2;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.total {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.total strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.empty,
+.hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.hint {
+  margin-top: 10px;
+  overflow-wrap: anywhere;
+}
+
+.sessions {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.session {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 12px;
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+  font-variant-numeric: tabular-nums;
+}
+
+.session:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.session-length {
+  font-weight: 600;
+}
+
+.session-detail {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.tag {
+  padding: 1px 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.tag-project {
+  background: var(--accent-soft);
+  border-color: transparent;
+  color: var(--text);
+}
+
+.session-note {
+  overflow-wrap: anywhere;
+}
