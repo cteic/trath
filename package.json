@@ -18,6 +18,7 @@
     "test": "turbo run test",
     "build": "turbo run build",
     "check": "turbo run //#format:check lint //#lint:root typecheck //#typecheck:root test",
+    "check:rust": "cd apps/desktop/src-tauri && cargo fmt --check && cargo clippy --all-targets -- -D warnings && cargo test",
     "tauri": "pnpm --filter @trath/desktop tauri"
   },
   "devDependencies": {
