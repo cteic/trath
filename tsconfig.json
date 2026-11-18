@@ -1,0 +1,10 @@
+{
+  "extends": "@trath/tsconfig-config/base",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "types": ["node"]
+  },
+  "include": ["*.js", "packages/*-config/**/*.js", "packages/*-config/**/*.ts"],
+  "exclude": ["**/node_modules", "packages/*-config/fixtures"]
+}

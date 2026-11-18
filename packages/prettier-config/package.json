@@ -1,0 +1,21 @@
+{
+  "name": "@trath/prettier-config",
+  "version": "0.0.0",
+  "license": "AGPL-3.0-only",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./base": "./src/base.js"
+  },
+  "scripts": {
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "prettier": "catalog:"
+  },
+  "devDependencies": {
+    "prettier": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  }
+}

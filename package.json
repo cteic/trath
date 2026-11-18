@@ -1,0 +1,33 @@
+{
+  "name": "trath",
+  "version": "0.0.0",
+  "license": "AGPL-3.0-only",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.18.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "turbo run lint //#lint:root",
+    "lint:root": "eslint 'packages/*-config/**' '*.js' --max-warnings 0",
+    "typecheck": "turbo run typecheck //#typecheck:root",
+    "typecheck:root": "tsc --noEmit",
+    "test": "turbo run test",
+    "build": "turbo run build",
+    "check": "turbo run //#format:check lint //#lint:root typecheck //#typecheck:root test",
+    "tauri": "pnpm --filter @trath/desktop tauri"
+  },
+  "devDependencies": {
+    "@trath/eslint-config": "workspace:*",
+    "@trath/prettier-config": "workspace:*",
+    "@trath/tsconfig-config": "workspace:*",
+    "@types/node": "catalog:",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "turbo": "catalog:",
+    "typescript": "catalog:"
+  }
+}
