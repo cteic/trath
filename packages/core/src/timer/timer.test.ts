@@ -32,6 +32,15 @@ describe('start and stop', () => {
     expect(timer.saved()[0]).toMatchObject({ note: 'Fix the retry test', project: 'billing' });
   });
 
+  it('saves a note pasted with a soft line break as one plain line', () => {
+    const timer = harness();
+    timer.send({ type: 'START', at: at('09:00'), mode: 'stopwatch', id: 'a' });
+    timer.send({ type: 'EDIT', note: 'Fix the\u000bretry test', project: 'billing\u0007' });
+    timer.send({ type: 'STOP', at: at('09:10') });
+
+    expect(timer.saved()[0]).toMatchObject({ note: 'Fix the retry test', project: 'billing' });
+  });
+
   it('carries a note typed before the start', () => {
     const timer = harness();
     timer.send({
@@ -353,5 +362,14 @@ describe('helpers', () => {
   it('cleans text to one trimmed line of a set length', () => {
     expect(cleanLine('  a\r\nb\tc  ', 100)).toBe('a b c');
     expect(cleanLine('abcdef', 3)).toBe('abc');
+  });
+
+  it('turns every control character into a space, as the log refuses them', () => {
+    const pasted = 'one\u000btwo\u000cthree\u0085four\u0000five\u007f';
+    expect(cleanLine(pasted, 100)).toBe('one two three four five');
+  });
+
+  it('never cuts a character in half at the length limit', () => {
+    expect(cleanLine(`ab\u{1F600}cd`, 3)).toBe('ab\u{1F600}');
   });
 });

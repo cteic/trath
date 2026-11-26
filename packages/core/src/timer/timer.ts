@@ -71,10 +71,8 @@ export interface TimerResult {
 export const IDLE: IdleState = { phase: 'idle' };
 
 export function cleanLine(text: string, maxLength: number): string {
-  return text
-    .replace(/[\r\n\t]+/g, ' ')
-    .slice(0, maxLength)
-    .trim();
+  const oneLine = text.replace(/\p{Cc}+/gu, ' ');
+  return Array.from(oneLine).slice(0, maxLength).join('').trim();
 }
 
 /** Work time so far: clock time since the start, less every pause. */
