@@ -48,12 +48,11 @@ describe('snapshot', () => {
 
     const result = transition(restored.timer, { type: 'STOP', at: at('10:15') }, restored.settings);
 
-    expect(result.effects).toEqual([
-      {
-        type: 'SAVE_SESSION',
-        session: expect.objectContaining({ startedAt: at('09:00'), durationMs: 75 * 60_000 }),
-      },
-    ]);
+    expect(result.effects).toHaveLength(1);
+    expect(result.effects[0]).toMatchObject({
+      type: 'SAVE_SESSION',
+      session: { startedAt: at('09:00'), durationMs: 75 * 60_000 },
+    });
   });
 
   it.each([

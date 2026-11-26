@@ -170,7 +170,7 @@ function tickEye(
   at: number,
   active: number,
   workMs: number | null,
-  settings: TimerSettings,
+  settings: TimerSettings
 ): TimerResult {
   const marks = Math.floor(active / EYE_INTERVAL_MS);
   if (marks > state.eyeMarks) {
@@ -207,7 +207,7 @@ function tickRunning(state: RunningState, at: number, settings: TimerSettings): 
 function transitionRunning(
   state: RunningState,
   event: TimerEvent,
-  settings: TimerSettings,
+  settings: TimerSettings
 ): TimerResult {
   switch (event.type) {
     case 'PAUSE':
@@ -250,7 +250,7 @@ function transitionRunning(
 export function transition(
   state: TimerState,
   event: TimerEvent,
-  settings: TimerSettings,
+  settings: TimerSettings
 ): TimerResult {
   switch (state.phase) {
     case 'idle':

@@ -38,7 +38,7 @@ describe('renderMarkdown', () => {
         '| 09:00 | 09:25 | 25m | Pomodoro | billing | Write retry tests |',
         '| 14:00 | 15:40 | 1h 30m | Deep work |  |  |',
         '',
-      ].join('\n'),
+      ].join('\n')
     );
   });
 
@@ -66,20 +66,20 @@ describe('renderMarkdown', () => {
         '| 09:00 | 09:25 | 25m | Pomodoro | billing | Write retry tests |',
         '| 14:00 | 15:40 | 1h 30m | Deep work |  |  |',
         '',
-      ].join('\n'),
+      ].join('\n')
     );
   });
 
   it('says so when a day or a range has no sessions', () => {
     expect(renderMarkdown([], today)).toBe('# Work log: 2026-11-18 (Wednesday)\n\nNo sessions.\n');
     expect(renderMarkdown([], twoDays)).toBe(
-      '# Work log: 2026-11-17 to 2026-11-18\n\nNo sessions.\n',
+      '# Work log: 2026-11-17 to 2026-11-18\n\nNo sessions.\n'
     );
   });
 
   it('gives the same text whatever order the sessions arrive in', () => {
     expect(renderMarkdown([morning, afternoon, tuesday], twoDays)).toBe(
-      renderMarkdown(all, twoDays),
+      renderMarkdown(all, twoDays)
     );
   });
 });
@@ -93,7 +93,7 @@ describe('renderCsv', () => {
         '2026-11-18,2026-11-18T09:00:00+00:00,2026-11-18T09:25:00+00:00,1500,pomodoro,billing,Write retry tests,a',
         '2026-11-18,2026-11-18T14:00:00+00:00,2026-11-18T15:40:00+00:00,5400,deep,,,b',
         '',
-      ].join('\r\n'),
+      ].join('\r\n')
     );
   });
 

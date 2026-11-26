@@ -62,8 +62,8 @@ export function SessionList({ sessions, today, timer, now, skipped }: SessionLis
       )}
       {skipped > 0 && (
         <p className="hint" role="status">
-          {skipped === 1 ? '1 line' : `${skipped} lines`} in the log file could not be read and{' '}
-          {skipped === 1 ? 'was' : 'were'} left out.
+          {skipped === 1 ? '1 line' : `${String(skipped)} lines`} in the log file could not be read
+          and {skipped === 1 ? 'was' : 'were'} left out.
         </p>
       )}
     </section>

@@ -1,9 +1,13 @@
 import { defineConfig } from 'eslint/config';
-import tseslint from 'typescript-eslint';
+
+import { createConfig } from '@cteic/eslint-config';
 
 import { kebabCaseFilename } from './kebab-case-filename.js';
 
 export const LINTED_FILES = ['**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}'];
+
+/** The foundry config loads the TypeScript rules for these files only. */
+export const TYPESCRIPT_FILES = ['**/*.{ts,tsx,mts,cts}'];
 
 export const DEFAULT_IGNORES = ['**/node_modules/**', '**/dist/**', '**/.turbo/**', '**/target/**'];
 
@@ -53,6 +57,9 @@ export const banRules = {
  */
 
 /**
+ * The cteic foundry config, plus the rules Tráth adds on top: kebab-case file
+ * names, function declarations at the top level and interfaces for shapes.
+ *
  * @param {EslintConfigOptions} [options]
  * @returns {import('eslint').Linter.Config[]}
  */
@@ -60,13 +67,14 @@ export function createEslintConfig(options = {}) {
   const { ignores = [] } = options;
 
   return defineConfig(
-    { ignores: [...DEFAULT_IGNORES, ...ignores] },
+    ...createConfig({ ignores: [...DEFAULT_IGNORES, ...ignores] }),
     {
       files: LINTED_FILES,
-      extends: [tseslint.configs.recommended],
       plugins: { filenames: filenamesPlugin },
-      linterOptions: { reportUnusedDisableDirectives: 'error' },
-      rules: banRules,
+      rules: Object.fromEntries(
+        Object.entries(banRules).filter(([name]) => !name.startsWith('@typescript-eslint/'))
+      ),
     },
+    { files: TYPESCRIPT_FILES, rules: banRules }
   );
 }

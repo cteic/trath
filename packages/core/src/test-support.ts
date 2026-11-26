@@ -42,7 +42,7 @@ export function harness(settings: TimerSettings = { eyeBreaks: false }): Harness
     },
     saved() {
       return self.effects.flatMap((effect) =>
-        effect.type === 'SAVE_SESSION' ? [effect.session] : [],
+        effect.type === 'SAVE_SESSION' ? [effect.session] : []
       );
     },
   };

@@ -5,6 +5,5 @@ target
 coverage
 pnpm-lock.yaml
 packages/eslint-config/fixtures
-packages/tsconfig-config/fixtures
 apps/desktop/src-tauri/gen
 LICENSE

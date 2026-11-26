@@ -41,7 +41,7 @@ export function parseSessions(value: unknown): Session[] {
 
 export function sortSessions(sessions: readonly Session[]): Session[] {
   return [...sessions].sort(
-    (a, b) => a.startedAt - b.startedAt || a.endedAt - b.endedAt || a.id.localeCompare(b.id),
+    (a, b) => a.startedAt - b.startedAt || a.endedAt - b.endedAt || a.id.localeCompare(b.id)
   );
 }
 

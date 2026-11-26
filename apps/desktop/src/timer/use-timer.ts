@@ -31,11 +31,11 @@ export interface TimerModel {
   skipped: number;
   draft: Draft;
   error: string | null;
-  toggle(): void;
-  stop(): void;
-  setMode(mode: TimerMode): void;
-  setEyeBreaks(on: boolean): void;
-  setDraft(draft: Draft): void;
+  toggle: () => void;
+  stop: () => void;
+  setMode: (mode: TimerMode) => void;
+  setEyeBreaks: (on: boolean) => void;
+  setDraft: (draft: Draft) => void;
 }
 
 const EMPTY_DRAFT: Draft = { note: '', project: '' };
@@ -98,7 +98,7 @@ export function useTimer(backend: Backend, clock: () => number, newId: () => str
         }
       });
     },
-    [backend, enqueue],
+    [backend, enqueue]
   );
 
   const commit = useCallback(
@@ -107,7 +107,7 @@ export function useTimer(backend: Backend, clock: () => number, newId: () => str
       setSnapshot(next);
       enqueue(() => backend.saveState(next));
     },
-    [backend, enqueue],
+    [backend, enqueue]
   );
 
   const applyDraft = useCallback((next: Draft) => {
@@ -121,7 +121,7 @@ export function useTimer(backend: Backend, clock: () => number, newId: () => str
         setSessions((current) =>
           current.some((other) => other.id === effect.session.id)
             ? current
-            : sortSessions([...current, effect.session]),
+            : sortSessions([...current, effect.session])
         );
         saveSession(effect.session);
         // The note belonged to that session. The project likely carries on.
@@ -130,7 +130,7 @@ export function useTimer(backend: Backend, clock: () => number, newId: () => str
       }
       enqueue(() => backend.notify(noticeText(effect.kind, effect.mode)));
     },
-    [applyDraft, backend, enqueue, saveSession],
+    [applyDraft, backend, enqueue, saveSession]
   );
 
   const send = useCallback(
@@ -143,7 +143,7 @@ export function useTimer(backend: Backend, clock: () => number, newId: () => str
         commit({ ...current, timer: result.state });
       }
     },
-    [commit, runEffect],
+    [commit, runEffect]
   );
 
   const sendDraft = useCallback(() => {
@@ -233,7 +233,7 @@ export function useTimer(backend: Backend, clock: () => number, newId: () => str
         commit({ ...current, mode });
       }
     },
-    [commit],
+    [commit]
   );
 
   const setEyeBreaks = useCallback(
@@ -243,7 +243,7 @@ export function useTimer(backend: Backend, clock: () => number, newId: () => str
         commit({ ...current, settings: { ...current.settings, eyeBreaks: on } });
       }
     },
-    [commit],
+    [commit]
   );
 
   return {

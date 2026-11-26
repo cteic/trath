@@ -13,8 +13,10 @@
     "test": "vitest run"
   },
   "devDependencies": {
+    "@cteic/tsconfig": "catalog:",
+    "@cteic/vitest-config": "catalog:",
     "@trath/eslint-config": "workspace:*",
-    "@trath/tsconfig-config": "workspace:*",
+    "@vitest/coverage-v8": "catalog:",
     "eslint": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",

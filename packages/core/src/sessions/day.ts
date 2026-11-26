@@ -1,4 +1,4 @@
-import { type Session, sortSessions } from './session';
+import { sortSessions, type Session } from './session';
 
 const DAY_KEY = /^(\d{4})-(\d{2})-(\d{2})$/;
 
@@ -11,7 +11,7 @@ function pad(value: number): string {
 /** The local calendar day a moment falls on, as `2026-11-18`. */
 export function dayKey(at: number): string {
   const date = new Date(at);
-  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+  return `${String(date.getFullYear())}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
 }
 
 function localMidnight(key: string, addDays: number): number | null {
@@ -56,7 +56,7 @@ export function sessionsInRange(sessions: readonly Session[], range: DayRange): 
     return [];
   }
   return sortSessions(
-    sessions.filter((session) => session.startedAt >= start && session.startedAt < end),
+    sessions.filter((session) => session.startedAt >= start && session.startedAt < end)
   );
 }
 
@@ -75,7 +75,7 @@ export function groupByDay(sessions: readonly Session[]): DayGroup[] {
   for (const session of sortSessions(sessions)) {
     const day = dayKey(session.startedAt);
     const last = groups.at(-1);
-    if (last !== undefined && last.day === day) {
+    if (last?.day === day) {
       last.sessions.push(session);
     } else {
       groups.push({ day, sessions: [session] });

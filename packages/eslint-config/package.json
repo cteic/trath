@@ -11,6 +11,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@cteic/eslint-config": "catalog:",
     "typescript-eslint": "catalog:"
   },
   "peerDependencies": {

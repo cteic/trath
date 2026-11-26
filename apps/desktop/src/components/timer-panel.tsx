@@ -2,8 +2,8 @@ import {
   MODE_SPECS,
   NOTE_MAX_LENGTH,
   PROJECT_MAX_LENGTH,
-  TIMER_MODES,
   timeOfDay,
+  TIMER_MODES,
   type TimerMode,
   type TimerState,
   type TimerView,
@@ -45,7 +45,7 @@ function caption(view: TimerView, timer: TimerState, mode: TimerMode): string {
   if (spec.workMs === null || spec.breakMs === null) {
     return 'Runs until you stop it';
   }
-  return `${spec.workMs / 60_000} minutes of work, then a ${spec.breakMs / 60_000}-minute break`;
+  return `${String(spec.workMs / 60_000)} minutes of work, then a ${String(spec.breakMs / 60_000)}-minute break`;
 }
 
 export function TimerPanel({
