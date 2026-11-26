@@ -16,5 +16,5 @@ const backend = createTauriBackend();
 createRoot(root).render(
   <StrictMode>
     <App backend={backend} />
-  </StrictMode>,
+  </StrictMode>
 );

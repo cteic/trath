@@ -19,14 +19,16 @@
     "react-dom": "catalog:"
   },
   "devDependencies": {
+    "@cteic/tsconfig": "catalog:",
+    "@cteic/vitest-config": "catalog:",
     "@tauri-apps/cli": "catalog:",
     "@testing-library/dom": "catalog:",
     "@testing-library/react": "catalog:",
     "@trath/eslint-config": "workspace:*",
-    "@trath/tsconfig-config": "workspace:*",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@vitejs/plugin-react": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
     "eslint": "catalog:",
     "jsdom": "catalog:",
     "typescript": "catalog:",

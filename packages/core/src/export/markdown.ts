@@ -1,12 +1,12 @@
 import { formatDuration } from '../format/duration';
 import {
-  type DayRange,
   groupByDay,
   sessionsInRange,
   timeOfDay,
   weekdayName,
+  type DayRange,
 } from '../sessions/day';
-import { type Session, totalDurationMs } from '../sessions/session';
+import { totalDurationMs, type Session } from '../sessions/session';
 import { MODE_SPECS } from '../timer/modes';
 
 function cell(text: string | null): string {
@@ -14,7 +14,7 @@ function cell(text: string | null): string {
 }
 
 function countLabel(count: number): string {
-  return count === 1 ? '1 session' : `${count} sessions`;
+  return count === 1 ? '1 session' : `${String(count)} sessions`;
 }
 
 function totalLine(sessions: readonly Session[]): string {
@@ -29,7 +29,7 @@ function table(sessions: readonly Session[]): string[] {
       (session) =>
         `| ${timeOfDay(session.startedAt)} | ${timeOfDay(session.endedAt)} | ` +
         `${formatDuration(session.durationMs)} | ${MODE_SPECS[session.mode].label} | ` +
-        `${cell(session.project)} | ${cell(session.note)} |`,
+        `${cell(session.project)} | ${cell(session.note)} |`
     ),
   ];
 }

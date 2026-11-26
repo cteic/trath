@@ -1,6 +1,11 @@
 {
-  "extends": "@trath/tsconfig-config/base",
+  "extends": "@cteic/tsconfig/base.json",
   "compilerOptions": {
+    "target": "ES2024",
+    "lib": ["ES2024"],
+    "module": "preserve",
+    "moduleDetection": "force",
+    "noEmit": true,
     "allowJs": true,
     "checkJs": true,
     "types": ["node"]

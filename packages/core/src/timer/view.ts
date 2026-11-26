@@ -19,7 +19,7 @@ function secondsLeft(ms: number): number {
 export function timerView(
   state: TimerState,
   at: number,
-  idleMode: keyof typeof MODE_SPECS,
+  idleMode: keyof typeof MODE_SPECS
 ): TimerView {
   if (state.phase === 'idle') {
     const workMs = MODE_SPECS[idleMode].workMs;

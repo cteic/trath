@@ -1,5 +1,5 @@
-import type { Session, Snapshot } from '@trath/core';
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import type { Session, Snapshot } from '@trath/core';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { App } from './app';
@@ -29,7 +29,7 @@ async function mount(start: number, backend = createFakeBackend()): Promise<Rig>
   }
   function newId(): string {
     ids += 1;
-    return `id-${ids}`;
+    return `id-${String(ids)}`;
   }
   render(<App backend={backend} clock={clock} newId={newId} />);
   await waitFor(() => {

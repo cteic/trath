@@ -22,9 +22,9 @@
     "tauri": "pnpm --filter @trath/desktop tauri"
   },
   "devDependencies": {
+    "@cteic/prettier-config": "catalog:",
+    "@cteic/tsconfig": "catalog:",
     "@trath/eslint-config": "workspace:*",
-    "@trath/prettier-config": "workspace:*",
-    "@trath/tsconfig-config": "workspace:*",
     "@types/node": "catalog:",
     "eslint": "catalog:",
     "prettier": "catalog:",

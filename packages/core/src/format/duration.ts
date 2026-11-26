@@ -9,7 +9,7 @@ export function formatClock(ms: number): string {
   const minutes = Math.floor((total % 3600) / 60);
   const seconds = total % 60;
   if (hours > 0) {
-    return `${hours}:${pad(minutes)}:${pad(seconds)}`;
+    return `${String(hours)}:${pad(minutes)}:${pad(seconds)}`;
   }
   return `${pad(minutes)}:${pad(seconds)}`;
 }
@@ -18,17 +18,17 @@ export function formatClock(ms: number): string {
 export function formatDuration(ms: number): string {
   const total = Math.max(0, Math.floor(ms / 1000));
   if (total < 60) {
-    return `${total}s`;
+    return `${String(total)}s`;
   }
   const hours = Math.floor(total / 3600);
   const minutes = Math.floor((total % 3600) / 60);
   if (hours > 0) {
-    return `${hours}h ${pad(minutes)}m`;
+    return `${String(hours)}h ${pad(minutes)}m`;
   }
-  return `${minutes}m`;
+  return `${String(minutes)}m`;
 }
 
 /** `5-minute`, for use in a sentence. */
 export function formatMinutes(ms: number): string {
-  return `${Math.round(ms / 60_000)}-minute`;
+  return `${String(Math.round(ms / 60_000))}-minute`;
 }

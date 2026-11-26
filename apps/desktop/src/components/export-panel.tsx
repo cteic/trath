@@ -19,7 +19,7 @@ export interface ExportPanelProps {
 }
 
 function countLabel(count: number): string {
-  return count === 1 ? '1 session' : `${count} sessions`;
+  return count === 1 ? '1 session' : `${String(count)} sessions`;
 }
 
 export function ExportPanel({ backend, sessions, today }: ExportPanelProps) {

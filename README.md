@@ -76,14 +76,15 @@ real log untouched.
 
 ## How it is built
 
-A pnpm workspace run by Turborepo.
+A pnpm workspace run by Turborepo. TypeScript, ESLint, Prettier and Vitest settings come from the
+shared `@cteic` foundry packages, and CI runs the foundry checks workflow.
 
 | Path                     | What it holds                                                                 |
 | ------------------------ | ----------------------------------------------------------------------------- |
 | `packages/core`          | The timer as a pure function, day maths and the exports. No platform imports. |
 | `apps/desktop`           | The React window. It talks to the outside through one `Backend` interface.    |
 | `apps/desktop/src-tauri` | The Tauri 2 shell in Rust: files, menu-bar icon, notifications, a tick.       |
-| `packages/*-config`      | Shared ESLint, Prettier and TypeScript settings.                              |
+| `packages/eslint-config` | The Tráth lint rules, added on top of the shared foundry config.              |
 
 The timer in `packages/core` is `transition(state, event, settings)`. It holds no timers and reads
 no clock: every timed event carries its own time. Elapsed time is always worked out from the saved

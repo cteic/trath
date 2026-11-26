@@ -1,4 +1,0 @@
-{
-  "extends": "@trath/tsconfig-config/base",
-  "include": ["*.ts"]
-}

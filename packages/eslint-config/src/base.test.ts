@@ -1,6 +1,5 @@
 import { createRequire } from 'node:module';
 import path from 'node:path';
-
 import { ESLint } from 'eslint';
 import type { Linter } from 'eslint';
 import tseslint from 'typescript-eslint';
@@ -103,9 +102,7 @@ describe('shared config', () => {
   });
 
   it('sets every ban to error', () => {
-    const severities = Object.values(banRules).map((entry) =>
-      entry === undefined ? undefined : severityOf(entry),
-    );
+    const severities = Object.values(banRules).map((entry) => severityOf(entry));
 
     expect(severities).toEqual(severities.map(() => 'error'));
   });
@@ -148,7 +145,7 @@ describe('installed typescript-eslint', () => {
       overrideConfig: createEslintConfig(),
     });
     const config: unknown = await eslint.calculateConfigForFile(
-      path.join(fixturesDir, 'allowed-patterns.ts'),
+      path.join(fixturesDir, 'allowed-patterns.ts')
     );
 
     expect(config).toMatchObject({

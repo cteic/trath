@@ -5,6 +5,10 @@ packages:
 engineStrict: true
 
 catalog:
+  '@cteic/eslint-config': 1.0.1
+  '@cteic/prettier-config': 1.0.1
+  '@cteic/tsconfig': 1.0.1
+  '@cteic/vitest-config': 1.0.1
   '@tauri-apps/api': 2.12.4
   '@tauri-apps/cli': 2.12.4
   '@testing-library/dom': 10.4.2
@@ -18,8 +22,15 @@ catalog:
   prettier: 3.10.1
   react: 19.3.1
   react-dom: 19.3.1
+  '@vitest/coverage-v8': 5.1.0
   turbo: 2.11.11
   typescript: 6.0.3
   typescript-eslint: 8.72.2
   vite: 8.3.8
   vitest: 5.1.0
+
+minimumReleaseAgeExclude:
+  - '@cteic/eslint-config@1.0.1'
+  - '@cteic/prettier-config@1.0.1'
+  - '@cteic/tsconfig@1.0.1'
+  - '@cteic/vitest-config@1.0.1'

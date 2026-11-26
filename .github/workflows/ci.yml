@@ -13,8 +13,17 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  check:
-    name: Format, lint, typecheck, test, build
+  checks:
+    uses: cteic/foundry/.github/workflows/checks.yml@5fb07ddb5374ecebad5e2aeece6a0f04ea423cfc # dev, 2026-11-26
+    with:
+      build-command: pnpm build
+      rust: true
+      rust-working-directory: apps/desktop/src-tauri
+      # The crate embeds the built frontend. An empty folder is enough for clippy and the tests.
+      rust-prepare-command: mkdir -p ../dist
+
+  app:
+    name: Build the app
     runs-on: macos-latest
     timeout-minutes: 30
     steps:
@@ -28,8 +37,6 @@ jobs:
           cache: pnpm
 
       - uses: dtolnay/rust-toolchain@stable
-        with:
-          components: clippy, rustfmt
 
       - uses: Swatinem/rust-cache@v2
         with:
@@ -37,16 +44,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Format, lint, typecheck and unit tests
-        run: pnpm check
-
-      # The Rust crate embeds the built frontend, so it must exist first.
-      - name: Build the frontend
-        run: pnpm build
-
-      - name: Rust format, clippy and tests
-        run: pnpm check:rust
 
       - name: Build the app
         run: pnpm tauri build --debug

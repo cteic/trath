@@ -1,6 +1,11 @@
 {
-  "extends": "@trath/tsconfig-config/react",
+  "extends": "@cteic/tsconfig/react.json",
   "compilerOptions": {
+    "target": "ES2024",
+    "lib": ["ES2024", "DOM", "DOM.Iterable"],
+    "module": "preserve",
+    "moduleDetection": "force",
+    "noEmit": true,
     "types": ["vite/client"]
   },
   "include": ["src", "vite.config.ts"]
