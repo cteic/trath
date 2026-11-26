@@ -365,9 +365,8 @@ describe('helpers', () => {
   });
 
   it('turns every control character into a space, as the log refuses them', () => {
-    expect(cleanLine('one\u000btwo\u000cthree\u0085four\u0000five\u007f', 100)).toBe(
-      'one two three four five',
-    );
+    const pasted = 'one\u000btwo\u000cthree\u0085four\u0000five\u007f';
+    expect(cleanLine(pasted, 100)).toBe('one two three four five');
   });
 
   it('never cuts a character in half at the length limit', () => {
